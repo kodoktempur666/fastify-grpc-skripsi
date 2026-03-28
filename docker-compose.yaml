@@ -2,6 +2,7 @@ services:
   fastify-grpc-api:
     build: ./fastify-api
     container_name: fastify-grpc-api
+    image: fastify-grpc-api:latest
     ports:
       - "3015:3015"
     networks:

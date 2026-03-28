@@ -28,6 +28,6 @@ app.get("/metrics", async (request, reply) => {
 });
 
 
-await app.register("/checkout", routes);
+await app.register(routes, { prefix: "/checkout" });
 
 export default app;
