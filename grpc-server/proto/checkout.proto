@@ -4,32 +4,46 @@ package checkout;
 
 service CheckoutService {
 
-  rpc CreateCheckout (CheckoutRequest)
+  rpc CreateCheckout (CreateCheckoutRequest)
   returns (CheckoutResponse);
 
-  rpc GetCheckout (Empty)
+  rpc GetCheckout (GetCheckoutRequest)
   returns (CheckoutResponse);
 
-  rpc EditCheckout (CheckoutRequest)
+  rpc EditCheckout (EditCheckoutRequest)
   returns (CheckoutResponse);
 
+  rpc PatchCheckout (PatchCheckoutRequest)
+  returns (CheckoutResponse);
 }
 
-message Empty {}
+message GetCheckoutRequest {
+  int32 id = 1;
+}
 
-message CheckoutRequest {
-
+message CreateCheckoutRequest {
   string name = 1;
   int32 amount = 2;
   string item = 3;
-
 }
 
-message CheckoutResponse {
-
+message EditCheckoutRequest {
   int32 id = 1;
   string name = 2;
   int32 amount = 3;
   string item = 4;
+}
 
+message PatchCheckoutRequest {
+  int32 id = 1;
+  string name = 2;
+  int32 amount = 3;
+  string item = 4;
+}
+
+message CheckoutResponse {
+  int32 id = 1;
+  string name = 2;
+  int32 amount = 3;
+  string item = 4;
 }
