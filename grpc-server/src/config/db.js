@@ -15,4 +15,4 @@ const pool = new Pool({
   min: 10,
 });
 
-export default pool;c
+export default pool;
