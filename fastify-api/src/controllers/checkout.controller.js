@@ -32,7 +32,7 @@ const patchCheckoutGrpc = (data) => {
 
 
 
-export const createCheckout = async (req, reply) => {
+export const createCheckoutBull = async (req, reply) => {
   await checkoutQueue.add("createCheckout", req.body);
 
   return reply.code(202).send({
@@ -40,6 +40,30 @@ export const createCheckout = async (req, reply) => {
     message: "Checkout queued"
   });
 };
+
+export const createCheckout = async (req, reply) => {
+  try {
+    // Panggil gRPC client secara sync (dibalut Promise)
+    const result = await new Promise((resolve, reject) => {
+      client.CreateCheckout(req.body, (err, response) => {
+        if (err) reject(err);
+        else resolve(response);
+      });
+    });
+
+    return reply.code(201).send({
+      success: true,
+      message: "Checkout created (sync gRPC)",
+      data: result
+    });
+  } catch (error) {
+    return reply.code(500).send({
+      success: false,
+      message: "Failed to create checkout",
+      error: error.message
+    });
+  }
+}
 
 
 export const getCheckout = async (req, reply) => {

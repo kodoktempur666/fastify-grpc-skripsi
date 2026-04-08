@@ -20,7 +20,7 @@ const worker = new Worker(
   },
   {
     connection: redis,
-    concurrency: 100
+    concurrency: 10
   }
 );
 

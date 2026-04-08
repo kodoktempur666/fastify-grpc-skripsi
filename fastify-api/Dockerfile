@@ -9,4 +9,4 @@ COPY . .
 
 EXPOSE 3015
 
-CMD ["sh", "-c", "node src/cluster.js & node src/workers/checkout.worker.js"]
+CMD ["sh", "-c", "node src/server.js & node src/workers/checkout.worker.js"]
