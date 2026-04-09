@@ -3,6 +3,5 @@ services:
     build: ./fastify-api
     container_name: fastify_grpc_api
     image: fastify-grpc-api:latest
-    netork_mode: "host"
     ports:
       - "3015:3015"
